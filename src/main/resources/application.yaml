@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: soccer_training
+
+  datasource: #configuracion de la base de datos
+    url: jdbc:mysql://localhost:3306/soccer-trining-api
+    username: root
+    password: Los300deleonidas
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa: #configuracion del jpa para las consultas
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        "[format_sql]": true
+
+server: #configuracion para el puerto y la rul global de la app
+  port: 9090
+  servlet:
+    context-path: /api/v1
+
+logging:
+  level:
+    "[org.springframework]": INFO
+
+security:
+  jwt:
+    # Clave secreta que se genera con openssl rand -base64 32
+    secret-key: 8KBfy2vtGh07R8gNJuhq8Oux51YwrhqjBdiVkWPVPYE=
+    # Expiracion expresada en ms (10 min)
+    token-expiration: 600000
