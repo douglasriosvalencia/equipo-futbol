@@ -3,7 +3,7 @@ spring:
     name: soccer_training
 
   datasource: #configuracion de la base de datos
-    url: jdbc:mysql://localhost:3306/soccer-trining-api
+    url: jdbc:mysql://localhost:3306/soccer_training
     username: root
     password: Los300deleonidas
     driver-class-name: com.mysql.cj.jdbc.Driver

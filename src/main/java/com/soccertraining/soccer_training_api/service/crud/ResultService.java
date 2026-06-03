@@ -144,7 +144,7 @@ public class ResultService {
 
                     dto.setUserId(user.getId());
 
-                    dto.setUserName(user.getName());
+                    dto.setUserName(user.getName()+""+user.getSurName());
 
                     dto.setAverageScore(average);
 
