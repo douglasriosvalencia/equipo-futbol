@@ -48,7 +48,39 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(response);
     }
+    //excepcion de jwt
+    @ExceptionHandler(JwtAuthenticationException.class)
+    public ResponseEntity<HttpGlobalResponse<Object>>
+    handleJwt(JwtAuthenticationException ex){
 
+        HttpGlobalResponse<Object> response =
+                new HttpGlobalResponse<>();
+
+        response.setData(null);
+        response.setMessage(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(response);
+    }
+    //exepcion de credenciales
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<HttpGlobalResponse<Object>>
+    handleInvalidCredentials(
+            InvalidCredentialsException ex){
+
+        HttpGlobalResponse<Object> response =
+                new HttpGlobalResponse<>();
+
+        response.setData(null);
+        response.setMessage(ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(response);
+    }
+
+    //execpcion global
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<HttpGlobalResponse<Object>>
     handleValidation(MethodArgumentNotValidException ex) {
@@ -70,6 +102,8 @@ public class GlobalExceptionHandler {
                 .badRequest()
                 .body(response);
     }
+
+
 
 
 }

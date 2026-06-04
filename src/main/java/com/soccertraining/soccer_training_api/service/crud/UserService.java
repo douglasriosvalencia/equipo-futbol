@@ -9,6 +9,7 @@ import com.soccertraining.soccer_training_api.exception.ResourceNotFoundExceptio
 import com.soccertraining.soccer_training_api.mapper.UserMapper;
 import com.soccertraining.soccer_training_api.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     //metodo de crear
     public UserResponseDTO create(UserRequestDTO requestDTO){
@@ -27,6 +29,7 @@ public class UserService {
         }
         User entity= UserMapper.toEntity(requestDTO);
         entity.setRole(Role.PLAYER);//inyecion del player desde la creacion
+        entity.setPassword(passwordEncoder.encode(requestDTO.getPassword())); //encriptacion de la contraseña
         User saved=userRepository.save(entity);
         return UserMapper.toResponse(saved);
     }
